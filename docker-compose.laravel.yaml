@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+
+  laravel:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile
+    image: creztfallen/laravel
+    container_name: laravel
+    networks:
+      - mynet
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    image: creztfallen/nginx
+    container_name: nginx
+    networks:
+      - mynet
+    ports:
+      - "8080:80"
+
+networks:
+  mynet:
+    driver: bridge
